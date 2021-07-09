@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br"
+        xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
@@ -19,5 +20,30 @@
             </div>
         </nav>
     </header>
+    <div id="div-table00">
+        <div id="div-table01">
+            <table border="2">
+                <thead>
+                    <tr>
+                        <td>CÓDIGO</td>
+                        <td>RAZÃO SOCIAL</td>
+                        <td>CLIENTES ATIVOS</td>
+                        <td>CLIENTE NOVOS</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="cliente : ${clientes}">
+                        <td><span th:text="${cliente.codigo}"></span></td>
+                        <td><span th:text="${cliente.razaoSocial}"></span></td>
+                        <td><span th:text="${cliente.ativoInativo()}"></span></td>
+                        <td><span th:text="${cliente.novoVelho()}"></span></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div id="div-painel-button-listarCliente">
+                <button onclick="window.location = '/listadecliente'">ATUALIZAR</button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

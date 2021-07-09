@@ -20,4 +20,18 @@ public class Cliente {
     private boolean ativoInativo;
     @Column(name = "novovelho", nullable = false)
     private boolean novoVelho;
+
+    public String novoVelho() {
+        if (novoVelho == true)
+            return "novo";
+        else
+            return "velho";
+    }
+
+    public String ativoInativo() {
+        if (ativoInativo == true)
+            return "ativo";
+        else
+            return "inativo";
+    }
 }

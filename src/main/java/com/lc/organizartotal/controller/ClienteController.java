@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class ClienteController {
@@ -19,9 +20,14 @@ public class ClienteController {
         return "cadastro/cadastrocliente";
     }
 
+
+
     @RequestMapping(method = RequestMethod.GET, value = "/listadecliente")
-    public String listadecliente () {
-        return "cadastro/listadecliente";
+    public ModelAndView listarCliente () {
+        ModelAndView andView = new ModelAndView("cadastro/listadecliente");
+        Iterable<Cliente> clienteIterable = clienteRepository.findAll();
+        andView.addObject("clientes", clienteIterable);
+        return andView;
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/salvarcliente")

@@ -73,3 +73,39 @@ body{
     font-weight: bolder;
     margin: 10px 0 0 0;
 }
+
+/**
+tabela
+ */
+
+#div-table00 {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+#div-table01 {
+    margin: 20% 0 0 0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 50%;
+
+    border-radius: 10px;
+
+    background-color: white;
+}
+table {
+    background-color: #b8b7b7;
+    border-radius: 4px;
+    padding: 5px;
+    margin: 20px 0 0 0;
+
+    width: 80%;
+    height: 30%;
+}
+table td {
+    text-align: center;
+}
+#div-painel-button-listarCliente {
+    margin: 10px 0 20px 340px;
+}
