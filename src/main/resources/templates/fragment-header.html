@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns: th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<header th:fragment="header">
+    <nav>
+        <div class="nav">
+            <a href="/" class="logo">OrganizarTotal</a>
+            <ul id="nav-mobile">
+                <button onclick="location.href = '/';">HOME</button>
+                <button onclick="location.href = '/cadastrocliente';">CADASTRO CLIENTE</button>
+                <button onclick="location.href = '/listadecliente';">LISTA DE CLIENTE</button>
+            </ul>
+        </div>
+    </nav>
+</header>
+</body>
+</html>
