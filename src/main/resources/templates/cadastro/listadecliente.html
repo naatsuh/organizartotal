@@ -1,38 +1,83 @@
 <!DOCTYPE html>
-<html lang="pt-br"
-        xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title>OT - Lista de Clientes</title>
     <link rel="stylesheet"  href="style/styles.css"/>
+    <link rel="stylesheet"  href="../style/styles.css"/>
     <link rel="icon" type="image/png" href="image/icon.png">
 </head>
 <body>
     <header th:replace="fragment-header :: header"/>
     <div id="div-table00">
         <div id="div-table01">
-            <table border="2">
-                <thead>
+            <h1>Lista de Clientes</h1>
+
+
+
+                <table border="1">
+                    <thead>
                     <tr>
-                        <td>CÓDIGO</td>
-                        <td>RAZÃO SOCIAL</td>
-                        <td>CLIENTES ATIVOS</td>
-                        <td>CLIENTE NOVOS</td>
+                        <th>
+                            <a  th:href="@{'/page/' + ${currentPage} + '?sortField=codigo&sortDir=' + ${reverseSortDir}}">
+                                CÓDIGO</a>
+                        </th>
+                        <th>
+                            <a  th:href="@{'/page/' + ${currentPage} + '?sortField=razaoSocial&sortDir=' + ${reverseSortDir}}">
+                                RAZÃO SOCIAL</a>
+                        </th>
+                        <th>
+                            <a  th:href="@{'/page/' + ${currentPage} + '?sortField=ativoInativo&sortDir=' + ${reverseSortDir}}">
+                                STATUS</a>
+                        </th>
+                        <th>
+                            <a  th:href="@{'/page/' + ${currentPage} + '?sortField=novoVelho&sortDir=' + ${reverseSortDir}}">
+                                NOVO</a>
+                        </th>
+                        <th style="color: blue;
+                            font-size: 16px;
+                            font-weight: bolder;">
+                            AÇÕES
+                        </th>
                     </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="cliente : ${clientes}">
-                        <td><span th:text="${cliente.codigo}"></span></td>
-                        <td><span th:text="${cliente.razaoSocial}"></span></td>
-                        <td><span th:text="${cliente.ativoInativo()}"></span></td>
-                        <td><span th:text="${cliente.novoVelho()}"></span></td>
+                    </thead>
+                    <tbody>
+                    <tr th:each="cliente : ${listadeclientes}">
+                        <td th:text="${cliente.codigo}"></td>
+                        <td th:text="${cliente.razaoSocial}"></td>
+                        <td th:text="${cliente.ativoInativo()}"></td>
+                        <td th:text="${cliente.novoVelho()}"></td>
+                        <td>
+                            <button th:onclick="'location.href = \'' + @{/editarcliente/{id}(id=${cliente.id})} +'\''"><img src="../image/edit.png" class="img-button-action"></button>
+                            <button th:onclick="'location.href = \'' + @{/deletarcliente/{id}(id=${cliente.id})}+'\''"><img src="../image/delete.png" class="img-button-action"></button>
+                        </td>
                     </tr>
-                </tbody>
-            </table>
-            <div id="div-painel-button-listarCliente">
-                <button onclick="window.location = '/listadecliente'">ATUALIZAR</button>
+                    </tbody>
+                </table>
+
+                <div th:if = "${totalPages > 1}">
+                    <div id="list-pagened">
+                        <div id="total-cliente-listacliente">
+                            Total Clientes: [[${totalItems}]]
+                        </div>
+                        <div>
+                                <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+                                    <a th:if="${currentPage != i}" th:href="@{'/page/' + ${i}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
+                                    <span th:unless="${currentPage != i}">[[${i}]]</span>  &nbsp; &nbsp;
+                                </span>
+                        </div>
+                        <div>
+                            <a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Próxima</a>
+                            <span th:unless="${currentPage < totalPages}">Próxima</span>
+                        </div>
+
+                        <div style="padding: 0 0 0 10px">
+                            <a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Última</a>
+                            <span th:unless="${currentPage < totalPages}">Última</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
 </body>
 </html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>OrganizaTotal</title>
+    <link rel="icon" type="image/png" href="image/icon.png">
+    <link rel="stylesheet"  href="../style/styles.css"/>
+
+</head>
+<body>
+    <header th:replace="fragment-header :: header"/>
+    <div class="div-space">
+        <hr>
+    </div>
+    <div class="div-form">
+        <h2>Editar Cliente</h2>
+
+        <form action="#" th:action="@{/saveCliente}" th:object="${cliente}"
+              method="POST" style="display: flex; flex-direction: column; font-family: Arial; font-weight: 14">
+            <label style="padding: 0 0 10px 0">CÓDIGO</label>
+            <input type="text" th:field="*{codigo}">
+            <label style="padding: 10px 0 10px 0">RAZÃO SOCIAL</label>
+            <input type="text" th:field="*{razaoSocial}">
+
+            <div style="margin: 10px 0 0 0">
+                <label>SELECIONE</label>
+                <span th:text="'**'+${cliente.ativoInativo()}+'**'"></span>
+                <select name="ativoInativo">
+                    <option value="true" selected>ATIVO</option>
+                    <option value="false">INATIVO</option>
+                </select>
+
+                <label>SELECIONE</label>
+                <span th:text="'**'+${cliente.novoVelho()}+'**'"></span>
+                <select name="novoVelho">
+                    <option value="true" selected>NOVO</option>
+                    <option value="false">VELHO</option>
+                </select>
+            </div>
+            <button type="submit" id="button-form"> Salvar Cliente</button>
+        </form>
+        <a th:href = "@{/listadecliente}" style="margin: 15px 0 0 0;"> Volta para lista de cliente</a>
+    </div>
+    <div class="div-space">
+        <hr>
+    </div>
+</body>
+</html>

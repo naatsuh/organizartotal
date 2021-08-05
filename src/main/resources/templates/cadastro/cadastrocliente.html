@@ -9,10 +9,11 @@
 </head>
 <body>
     <header th:replace="fragment-header :: header"/>
-
-    <div class="space-form"></div>
-    <div id="div-form">
-        <form method="post" action="/salvarcliente" style="display: flex; flex-direction: column; font-family: Arial; font-weight: 14">
+    <div class="div-space">
+        <hr>
+    </div>
+    <div class="div-form">
+        <form method="post" action="/saveCliente" style="display: flex; flex-direction: column; font-family: Arial; font-weight: 14">
             <label style="padding: 0 0 10px 0">CÓDIGO</label>
             <input name="codigo" autofocus type="number" style="text-decoration: none" required>
             <label style="padding: 10px 0 10px 0">RAZÃO SOCIAL</label>
@@ -20,18 +21,21 @@
             <div style="margin: 10px 0 0 0">
                 <label>SELECIONE</label>
                 <select name="ativoInativo">
-                    <option value="true" selected>ATIVO</option>
-                    <option value="false">INATIVO</option>
+                    <option value="TRUE" selected>ATIVO</option>
+                    <option value="FALSE">INATIVO</option>
                 </select>
 
                 <label>SELECIONE</label>
                 <select name="novoVelho">
-                    <option value="true" selected>NOVO</option>
-                    <option value="false">VELHO</option>
+                    <option value="TRUE" selected>NOVO</option>
+                    <option value="FALSE">VELHO</option>
                 </select>
             </div>
             <input id="button-form" type="submit" value="SALVAR">
         </form>
+    </div>
+    <div class="div-space">
+        <hr>
     </div>
 </body>
 </html>
