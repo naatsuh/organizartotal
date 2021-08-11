@@ -14,6 +14,7 @@ import java.util.Optional;
 
 @Service
 public class ClienteServiceImpl implements ClienteService{
+
     @Autowired
     private ClienteRepository clienteRepository;
 
@@ -30,13 +31,13 @@ public class ClienteServiceImpl implements ClienteService{
     @Override
     public Cliente getClienteById(long id) {
         Optional<Cliente> optional = clienteRepository.findById(id);
-        Cliente employee = null;
+        Cliente cliente = null;
         if (optional.isPresent()) {
-            employee = optional.get();
+            cliente = optional.get();
         } else {
-            throw new RuntimeException(" Employee not found for id :: " + id);
+            throw new RuntimeException(" Client not found for id :: " + id);
         }
-        return employee;
+        return cliente;
     }
 
     @Override
